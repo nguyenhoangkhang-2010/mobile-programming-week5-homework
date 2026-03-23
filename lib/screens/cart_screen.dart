@@ -20,7 +20,7 @@ class _CartScreenState extends State<CartScreen> {
       ),
 
       body: cart.isEmpty
-          ? Center(child: Text("Bạn chưa có sản phẩm nào trong giỏ hàng"))
+          ? Center(child: Text("Bạn chưa bỏ sản phẩm nào vô giỏ hàng"))
           : Column(
               children: [
                 Expanded(
@@ -37,7 +37,7 @@ class _CartScreenState extends State<CartScreen> {
                               context: context,
                               builder: (_) => AlertDialog(
                                 title: Text("Xác nhận"),
-                                content: Text("Xóa sản phẩm?"),
+                                content: Text("Bạn muốn loại bỏ sản phẩm này ra khỏi giỏ hàng"),
                                 actions: [
                                   TextButton(
                                       onPressed: () => Navigator.pop(context),
@@ -60,28 +60,31 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                 ),
 
-                ElevatedButton(
-                  child: Text("Thanh toán"),
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (_) => AlertDialog(
-                        title: Text("Thanh toán"),
-                        content: Text("Bạn đã thanh toán xong"),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              setState(() {
-                                CartService().clear();
-                              });
-                              Navigator.pop(context);
-                            },
-                            child: Text("OK"),
-                          )
-                        ],
-                      ),
-                    );
-                  },
+                Padding(
+                  padding: EdgeInsets.only(bottom: 20), // 👈 chỉnh số này
+                  child: ElevatedButton(
+                    child: Text("Thanh toán"),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (_) => AlertDialog(
+                          title: Text("Thanh toán"),
+                          content: Text("Bạn đã thanh toán xong giỏ hàng!!!"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  CartService().clear();
+                                });
+                                Navigator.pop(context);
+                              },
+                              child: Text("OK"),
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
                 )
               ],
             ),

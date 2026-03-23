@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../models/product.dart';
 import '../widgets/product_item.dart';
+import '../screens/splash_screen.dart';
 import '../services/cart_service.dart';
-import '../screens/cart_screen.dart'; // ✅ THÊM DÒNG NÀY
+import '../screens/cart_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<Product> products = [
@@ -50,7 +51,11 @@ class HomeScreen extends StatelessWidget {
             ListTile(
               title: Text("Thoát"),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (_) => SplashScreen()),
+                  (route) => false,
+                );
               },
             ),
           ],

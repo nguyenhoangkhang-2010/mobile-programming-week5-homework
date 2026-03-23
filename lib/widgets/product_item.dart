@@ -22,7 +22,7 @@ class ProductItem extends StatelessWidget {
                 context: context,
                 builder: (_) => AlertDialog(
                   title: Text("Xác nhận"),
-                  content: Text("Thêm vào giỏ hàng?"),
+                  content: Text("Bạn vừa thêm sản phẩm vào giỏ hàng?"),
                   actions: [
                     TextButton(
                       child: Text("Không"),
